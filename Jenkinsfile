@@ -1,11 +1,11 @@
 pipeline {
     agent any 
     environment {
-        PROJECT = "${env.PROJECT}"
-        TAG = "${env.TAG}"
-        LOCAL_REGISTRY = "${env.LOCAL_REGISTRY}"
-        NAMESPACE = "${env.NAMESPACE}"
-        NUM = "${env.N}"
+        PROJECT = "env-test"
+        TAG = "v0"
+        LOCAL_REGISTRY = "172.31.78.217:5000"
+        NAMESPACE = "default"
+        NUM = "4"
     }
     stages {
         stage('Build') {
