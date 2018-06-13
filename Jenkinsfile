@@ -24,7 +24,7 @@ pipeline {
                 sh "sed -i s/\"{{.project}}\"/\"${env.PROJECT}\"/g ./manifest/controller.yaml"
                 sh "sed -i s/\"{{.local.registry}}\"/\"${env.LOCAL_REGISTRY}\"/g ./manifest/controller.yaml"
                 sh "sed -i s/\"{{.tag}}\"/\"${env.TAG}\"/g ./manifest/controller.yaml"
-                sh "sed -i s/\"{{.num}}\"/\"${env.N}\"/g ./manifest/controller.yaml"
+                sh "sed -i s/\"{{.num}}\"/\"${env.NUM}\"/g ./manifest/controller.yaml"
                 sh "if kubectl -n ${env.NAMESPACE} get pod | grep ${env.PROJECT}; then kubectl delete -f ./manifest/controller.yaml; fi"
             }
         }
