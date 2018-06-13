@@ -1,0 +1,31 @@
+kind: Deployment 
+apiVersion: extensions/v1beta1
+metadata:
+  namespace: {{.namespace}} 
+  name: {{.project}}-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: {{.project}}
+    spec:
+      containers:
+        - name: {{.project}}
+          image: {{.local.registry}}/{{.project}}:{{.tag}}
+          imagePullPolicy: Always
+          command: ["/entrypoint.sh"]
+          env:
+            - name: NUM
+              value: "{{.num}}"
+          resources:
+            requests:
+              cpu: 100m
+          volumeMounts:
+            - name: host-time
+              mountPath: /etc/localtime
+              readOnly: true
+      volumes:
+        - name: host-time
+          hostPath:
+            path: /etc/localtime
